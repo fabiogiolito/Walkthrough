@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Code Walkthrough, Prism.js Plugin</title>
+
+  <!-- Requires line highlight plugin, Line numbers and Normalize Whitespace are good to have -->
+  <!-- Grab these from prism.com -->
+  <!-- https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript&plugins=line-highlight+line-numbers+normalize-whitespace -->
+  <script src="prism/prism.js"></script>
+  <link rel="stylesheet" href="prism/prism.css">
+  
+  <!-- These are the walkthrough plugin files -->
+  <script src="plugin/walkthrough.js"></script>
+  <link rel="stylesheet" href="plugin/walkthrough.css">
+  
+  <!-- These are just for this page, you don't need these -->
+  <link rel="stylesheet" href="assets/docs.css">
+
+</head>
+<body>
+  
+  <h1>Code Walkthrough</h1>
+  <p>Add comments to your code blocks with this plugin for <a href="http://prismjs.com">Prism.js</a></p>
+  <p>Made by <a href="https://twitter.com/fabiogiolito">Fabio Giolito</a>. Code available on <a href="https://github.com/fabiogiolito/Walkthrough">Github</a>.</p>
+  
+  <h2>Markup:</h2>
+  
+  <pre class="language-markup line-numbers" data-comments='[
+    {"3-8":"Use the data-comments attribute to define and array of objects following the format {\"lines\":\"text\"}. Please note that Javascript objects must use double quotes to be valid."},
+    {"4":"The line definition follows the line-highlight prism plugin. You can set a range (3-6) or specific lines (3,6,9)."},
+    {"6":"Not defining a line shows your comment without the line-highlight."}
+  ]'>
+    <code>
+      &lt;pre 
+        class="language-markup line-numbers" 
+        data-comments='[
+          {"3-8":"A comment highlighting lines 3 to 8."},
+          {"4":"Another comment, highlighting line 4."},
+          {"":"A comment without line highlighting"},
+          …
+        ]'
+      >
+        &lt;code>…&lt;/code>
+      &lt;/pre>
+    </code>
+  </pre>
+  
+  
+  <h2>Instalation:</h2>
+  
+  <pre class="language-markup line-numbers" data-comments='[
+    {"4-5":"Installing is pretty straightforward. Copy the plugin JS and CSS files into your project and add them to your page after the Prism code."},
+    {"1":"Make sure you have the Line Highlight plugin installed as it is required for this plugin to work properly. It can be found on PrismJS.com when you download the Prism.js files."},
+    {"1":"Line numbers, Theme colors, Languages support and more are also part of Prism.js and can be found on PrismJS.com"},
+    {"6":"You can customize Walkthrough with CSS."}
+  ]'>
+    <code>
+      &lt;script src="prism/prism.js">&lt;/script>
+      &lt;link rel="stylesheet" href="prism/prism.css">
+  
+      &lt;script src="plugin/walkthrough.js">&lt;/script>
+      &lt;link rel="stylesheet" href="plugin/walkthrough.css">
+    </code>
+  </pre>
+  
+  
+  <h2>Customizing:</h2>
+  
+  <pre class="language-css line-numbers custom-walkthrough" data-comments='[
+    {"1-3": "Add a custom class to your code block and use CSS to change how it looks.\n\nIn this example we are changing a few things. Like the line highlight color."},
+    {"5-8": "Then we make our block smaller and allow elements to overflow out of its bounds."},
+    {"11-15": "Here we move the walkthrough element (this element, with the comments) off to the right with some negative margin."},
+    {"16-17": "We change its colors."},
+    {"18": "And the elements order, making the buttons appear above the text."},
+    {"25-28": "Try it for yourself, you can customize any element with css."},
+  ]'>
+    <code>
+      pre.custom-walkthrough .line-highlight {
+        background: #4D3A4D;
+      }
+
+      pre.custom-walkthrough {
+        width: 640px;
+        overflow: visible;
+      }
+
+      pre.custom-walkthrough .walkthrough {
+        width: 260px;
+        position: absolute;
+        top: 0;
+        right: calc(-260px - 3em);
+        margin: 0;
+        background: #F0DDF0;
+        color: black;
+        flex-direction: column-reverse;
+      }
+
+      pre.custom-walkthrough .wt-text {
+        padding: 1em 0 0 0;
+      }
+      
+      pre.custom-walkthrough .wt-buttons { }
+      pre.custom-walkthrough .wt-btn { }
+      pre.custom-walkthrough .wt-prev { }
+      pre.custom-walkthrough .wt-next { }
+    </code>
+  </pre>
+
+
+</body>
+</html>

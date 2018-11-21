@@ -1,0 +1,62 @@
+body {
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.4em;
+
+  max-width: 1000px;
+  margin: 50px auto;
+}
+
+h2 {
+  margin-top: 2em;
+}
+
+
+/* Basic code block customization */
+
+pre[class*="language-"],
+code[class*="language-"] {
+  white-space: pre-wrap;
+  border-radius: 1em;
+}
+
+pre .walkthrough {
+  border-radius: 1em;
+}
+
+pre .wt-btn {
+  cursor: pointer;
+  border: 0;
+  background: rgba(255,255,255,0.8);
+  padding: 0.2em 1em 0.5em;
+  border-radius: 0.5em;
+}
+
+
+
+
+/* Custom Walkthrough element */
+
+pre.custom-walkthrough .line-highlight {
+  background: #4D3A4D;
+}
+
+pre.custom-walkthrough {
+  width: 640px;
+  overflow: visible;
+}
+
+pre.custom-walkthrough .walkthrough {
+  background: #F0DDF0;
+  color: black;
+  flex-direction: column-reverse;
+  width: 260px;
+  position: absolute;
+  top: 0;
+  right: calc(-260px - 3em);
+  margin: 0;
+}
+
+pre.custom-walkthrough .wt-text {
+  padding: 1em 0 0 0;
+}

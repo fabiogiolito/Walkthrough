@@ -1,0 +1,40 @@
+/*
+  Commented out styles are optional.
+*/
+
+pre[class*="language-"],
+code[class*="language-"] {
+  z-index: 1;
+/*  white-space: pre-wrap;*/
+/*  border-radius: 1em;*/
+}
+
+pre .line-highlight {
+  border-left: 3em solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
+}
+
+pre .walkthrough {
+  /*  border-radius: 1em;*/
+  background: rgba(255,255,255,0.1);
+  margin: 1em 1em 0 0;
+  padding: 1em;
+  display: flex;
+}
+
+pre .wt-text {
+  flex: 1;
+  padding-right: 2em;
+}
+
+pre .wt-buttons {
+  white-space: normal;
+}
+
+pre .wt-btn {
+/*  cursor: pointer;
+  border: 0;
+  background: rgba(255,255,255,0.8);
+  padding: 0.2em 1em 0.5em;
+  border-radius: 0.5em;*/
+}
