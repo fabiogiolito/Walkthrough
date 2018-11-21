@@ -5,6 +5,7 @@ body {
 
   max-width: 1000px;
   margin: 50px auto;
+  padding: 0 1em;
 }
 
 h2 {
@@ -41,22 +42,29 @@ pre.custom-walkthrough .line-highlight {
   background: #4D3A4D;
 }
 
-pre.custom-walkthrough {
-  width: 640px;
-  overflow: visible;
-}
-
 pre.custom-walkthrough .walkthrough {
   background: #F0DDF0;
   color: black;
   flex-direction: column-reverse;
-  width: 260px;
-  position: absolute;
-  top: 0;
-  right: calc(-260px - 3em);
-  margin: 0;
 }
 
 pre.custom-walkthrough .wt-text {
   padding: 1em 0 0 0;
+}
+
+
+@media (min-width: 550px) {
+  pre.custom-walkthrough {
+    width: 50%;
+    overflow: visible;
+  }
+
+  pre.custom-walkthrough .walkthrough {
+    width: 50%;
+    position: absolute;
+    top: 0;
+    right: calc(-50% - 3em);
+    margin: 0;
+  }
+
 }
