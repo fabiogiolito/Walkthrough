@@ -16,6 +16,7 @@ pre .line-highlight {
 
 pre .walkthrough {
   /*  border-radius: 1em;*/
+  white-space: pre-wrap;
   background: rgba(255,255,255,0.1);
   margin: 1em 1em 0 0;
   padding: 1em;

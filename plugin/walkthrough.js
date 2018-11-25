@@ -5,6 +5,7 @@ window.onload = function () {
   }
   
   Prism.plugins.walkthrough = {
+    
     showComment: function(pre, direction = 0) {
       
       // Check for comments
@@ -41,49 +42,61 @@ window.onload = function () {
 
       // Rerun Prism so lines are highlighted
       Prism.highlightAll();
+    },
+    
+    init: function() {
+      
+      var elements = document.querySelectorAll('pre');
+      
+      Array.prototype.forEach.call(elements, function(pre, i) {
+        var walkthrough = pre.querySelectorAll('.walkthrough');
+        if (walkthrough.length == 0) { 
+
+          // Build comment div
+          walkthrough = document.createElement("div");
+          walkthrough.setAttribute('class', 'walkthrough');        
+
+          // Build comment text div
+          var text = "<div class='wt-text'></div>";      
+          var buttons = "";
+
+          // Build comment buttons
+          var comments = eval(pre.getAttribute('data-comments'));
+          if (comments.length > 1) {
+            buttons = 
+             "<div class='wt-buttons'>\
+                <button class='wt-btn wt-prev'>‹</button>\
+                <button class='wt-btn wt-next'>›</button>\
+              </div>";
+          }
+          
+          // Add elements to comment div
+          walkthrough.innerHTML = text + buttons;
+
+          // Show comment div
+          pre.appendChild(walkthrough);
+
+
+          // BUTTON EVENTS
+          if (comments.length > 1) {
+            pre.querySelector('.wt-next').addEventListener("click", function() {
+              Prism.plugins.walkthrough.showComment(pre, +1);
+            })
+            pre.querySelector('.wt-prev').addEventListener("click", function() {
+              Prism.plugins.walkthrough.showComment(pre, -1);
+            })
+          }
+
+        }
+
+        // Show first comment
+        Prism.plugins.walkthrough.showComment(pre);
+
+      });
     }
   }
-
-  // INIT
-  var elements = document.querySelectorAll('pre');
-  Array.prototype.forEach.call(elements, function(pre, i) {
-    var comments = eval(pre.getAttribute('data-comments'));
-
-    // Build comment div
-    var walkthrough = document.createElement("div")
-    walkthrough.setAttribute('class', 'walkthrough');
-
-    // Build comment text div
-    var text = "<div class='wt-text'></div>";      
-    var buttons = "";
-
-    // Build comment buttons
-    if (comments.length > 1) {
-      buttons = 
-       "<div class='wt-buttons'>\
-          <button class='wt-btn wt-prev'>‹</button>\
-          <button class='wt-btn wt-next'>›</button>\
-        </div>";
-    }
-
-    // Add elements to comment div
-    walkthrough.innerHTML = text + buttons;
-    
-    // Show comment div
-    pre.appendChild(walkthrough);
-    
-    // Show first comment
-    Prism.plugins.walkthrough.showComment(pre);
-
-    // BUTTON EVENTS
-    if (comments.length > 1) {
-      pre.querySelector('.wt-next').addEventListener("click", function() {
-        Prism.plugins.walkthrough.showComment(pre, +1);
-      })
-      pre.querySelector('.wt-prev').addEventListener("click", function() {
-        Prism.plugins.walkthrough.showComment(pre, -1);
-      })
-    }
-  });
+  
+  Prism.plugins.walkthrough.init();
   
 }
+
