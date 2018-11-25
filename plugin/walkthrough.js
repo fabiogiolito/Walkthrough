@@ -58,10 +58,10 @@ window.onload = function () {
       
       Array.prototype.forEach.call(elements, function(pre, i) {
         try {
-          var comments = JSON.parse(decodeURIComponent(pre.getAttribute('data-comments')));
+          var comments = JSON.parse(pre.getAttribute('data-comments'));
           if (comments.length == 0) { return }
         } catch(e) {
-          console.log("ignored comment with error");
+          console.log("ignored comment with error:", pre.getAttribute('data-comments'));
           return;
         }
 
@@ -114,3 +114,4 @@ window.onload = function () {
   Prism.plugins.walkthrough.init();
   
 }
+
