@@ -9,8 +9,13 @@ window.onload = function () {
     showComment: function(pre, direction = 0) {
       
       // Check for comments
-      var comments = eval(pre.getAttribute('data-comments'));
-      if (!comments) { return }
+      try {
+          var comments = JSON.parse(decodeURIComponent(pre.getAttribute('data-comments')));
+          if (comments.length == 0) { return }
+        } catch(e) {
+          console.log("ignored comment with error");
+          return;
+      }
 
       // Get next/prev comment, or initial comment
       var commentNumber = pre.getAttribute('data-current-comment');
@@ -26,8 +31,6 @@ window.onload = function () {
       // Get comment data
       var line = Object.keys(comment, 0)[0];
       var text = comment[line];
-      
-      console.log(text);
 
       // Setup lines to be highlighted
       pre.setAttribute('data-line', line || " ");
@@ -43,7 +46,7 @@ window.onload = function () {
         commentNumber == 0 ? prev.setAttribute('disabled', true) : prev.removeAttribute('disabled');
         commentNumber == comments.length - 1 ? next.setAttribute('disabled', true) : next.removeAttribute('disabled');
       }
-      
+
 
       // Rerun Prism so lines are highlighted
       Prism.highlightAll();
@@ -54,8 +57,13 @@ window.onload = function () {
       var elements = document.querySelectorAll('pre');
       
       Array.prototype.forEach.call(elements, function(pre, i) {
-        var comments = eval(pre.getAttribute('data-comments'));
-        if (comments.length == 0) { return; }
+        try {
+          var comments = JSON.parse(decodeURIComponent(pre.getAttribute('data-comments')));
+          if (comments.length == 0) { return }
+        } catch(e) {
+          console.log("ignored comment with error");
+          return;
+        }
 
         var walkthrough = pre.querySelectorAll('.walkthrough');
         if (walkthrough.length == 0) { 
