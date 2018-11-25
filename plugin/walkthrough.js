@@ -24,11 +24,13 @@ window.onload = function () {
       pre.setAttribute('data-current-comment', commentNumber);
       
       // Get comment data
-      var line = Object.keys(comment, 0)[0] || " ";
+      var line = Object.keys(comment, 0)[0];
       var text = comment[line];
+      
+      console.log(text);
 
       // Setup lines to be highlighted
-      pre.setAttribute('data-line', line);
+      pre.setAttribute('data-line', line || " ");
       
       // Append comment text
       var commentDiv = pre.querySelectorAll('.wt-text');
@@ -37,8 +39,11 @@ window.onload = function () {
       // Update buttons
       var prev = pre.querySelector('.wt-prev');
       var next = pre.querySelector('.wt-next');
-      commentNumber == 0 ? prev.setAttribute('disabled', true) : prev.removeAttribute('disabled');
-      commentNumber == comments.length - 1 ? next.setAttribute('disabled', true) : next.removeAttribute('disabled');
+      if (prev) {
+        commentNumber == 0 ? prev.setAttribute('disabled', true) : prev.removeAttribute('disabled');
+        commentNumber == comments.length - 1 ? next.setAttribute('disabled', true) : next.removeAttribute('disabled');
+      }
+      
 
       // Rerun Prism so lines are highlighted
       Prism.highlightAll();
@@ -49,6 +54,9 @@ window.onload = function () {
       var elements = document.querySelectorAll('pre');
       
       Array.prototype.forEach.call(elements, function(pre, i) {
+        var comments = eval(pre.getAttribute('data-comments'));
+        if (comments.length == 0) { return; }
+
         var walkthrough = pre.querySelectorAll('.walkthrough');
         if (walkthrough.length == 0) { 
 
@@ -61,7 +69,6 @@ window.onload = function () {
           var buttons = "";
 
           // Build comment buttons
-          var comments = eval(pre.getAttribute('data-comments'));
           if (comments.length > 1) {
             buttons = 
              "<div class='wt-buttons'>\
@@ -99,4 +106,3 @@ window.onload = function () {
   Prism.plugins.walkthrough.init();
   
 }
-
