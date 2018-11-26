@@ -80,8 +80,8 @@ window.onload = function () {
           if (comments.length > 1) {
             buttons = 
              "<div class='wt-buttons'>\
-                <button class='wt-btn wt-prev'>‹</button>\
-                <button class='wt-btn wt-next'>›</button>\
+                <button class='wt-btn wt-prev'>←</button>\
+                <button class='wt-btn wt-next'>→</button>\
               </div>";
           }
           
